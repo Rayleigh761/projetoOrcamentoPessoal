@@ -2,7 +2,9 @@ class Despesa {
     constructor(ano, mes, dia, tipo, descricao, valor ){
         this.ano = ano
         this.mes = mes 
+ dev001
         this.dia = dia
+ master
         this.tipo = tipo
         this.descricao = descricao
         this.valor = valor 
@@ -121,10 +123,6 @@ let bd = new Bd()
  
 
 function cadastrarDespesa(){
-    /*let dt = new Date()
-    let ano = dt.getFullYear()
-    let mes = dt.getMonth()
-    let dia = dt.getDay()*/
     let ano = document.getElementById('ano')
     let mes = document.getElementById('mes')
     let dia = document.getElementById('dia')
