@@ -1,8 +1,6 @@
 class Despesa {
-    constructor(ano, mes, dia, tipo, descricao, valor ){
-        this.ano = ano
-        this.mes = mes 
-        this.dia = dia 
+    constructor(data, tipo, descricao, valor ){
+        this.data = data 
         this.tipo = tipo
         this.descricao = descricao
         this.valor = valor 
@@ -78,21 +76,15 @@ class Bd {
 
         console.log(despesa)
         console.log(despesasFiltradas)
-        //ano 
-        if(despesa.ano != '' ){
-            console.log('filtro ano')
-            despesasFiltradas = despesasFiltradas.filter(d => d.ano == despesa.ano)
+
+        //data
+
+        if(despesa.data != ''){
+            console.log('Filtro data')
+            despesasFiltradas = despesasFiltradas.filter(d => d.data == despesa.data)
         }
-        //mes
-        if(despesa.mes != '' ){
-            console.log('filtro mes')
-            despesasFiltradas = despesasFiltradas.filter(d => d.mes == despesa.mes)
-        }        
-        //dia
-        if(despesa.dia != '' ){
-            console.log('filtro dia')
-            despesasFiltradas = despesasFiltradas.filter(d => d.dia == despesa.dia)
-        }
+
+
         //tipo
         if(despesa.tipo != '' ){
             console.log('filtro tipo')
@@ -121,19 +113,15 @@ let bd = new Bd()
  
 
 function cadastrarDespesa(){
-    let ano = document.getElementById('ano')
-    let mes = document.getElementById('mes')
-    let dia = document.getElementById('dia')
-    let tipo = document.getElementById('tipo')
-    let descricao = document.getElementById('descricao')
-    let valor = document.getElementById('valor')
+    let data = document.getElementById('data');
+    let tipo = document.getElementById('tipo');
+    let descricao = document.getElementById('descricao');
+    let valor = document.getElementById('valor');
 
-    console.log(ano, mes, dia, tipo, descricao,valor)
+    console.log(data, tipo, descricao,valor)
 
     let despesa = new Despesa(
-        ano.value,
-        mes.value,
-        dia.value,
+        data.value,
         tipo.value,
         descricao.value,
         valor.value
@@ -149,9 +137,7 @@ function cadastrarDespesa(){
             document.getElementById('modal_botao').className = 'btn btn-success' 
             $('#modalRegistroDespesas').modal('show')
 
-            ano.value = ''
-            mes.value = ''
-            dia.value = ''
+            data.value = ''
             tipo.value = ''
             descricao.value = ''
             valor.value = ''
@@ -194,8 +180,8 @@ function carregaListaDispesas(despesas = Array(), filtro = false){
         let linha = listaDespesas.insertRow()
 
         //Criar as colunas (td)
-        linha.insertCell(0).innerHTML = `${d.dia}/${d.mes}/${d.ano}`
-        
+        linha.insertCell(0).innerHTML = `${d.data}`
+
         //ajustas o tipo 
         switch(d.tipo){
             case '1': d.tipo = 'Alimentação'
@@ -237,14 +223,12 @@ function carregaListaDispesas(despesas = Array(), filtro = false){
 
 
 function pesquisarDespesas(){
-    let ano = document.getElementById('ano').value
-    let mes = document.getElementById('mes').value
-    let dia = document.getElementById('dia').value
-    let tipo = document.getElementById('tipo').value
-    let descricao = document.getElementById('descricao').value
-    let valor = document.getElementById('valor').value
+    let data = document.getElementById('data').value;
+    let tipo = document.getElementById('tipo').value;
+    let descricao = document.getElementById('descricao').value;
+    let valor = document.getElementById('valor').value;
 
-    let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
+    let despesa = new Despesa(data, tipo, descricao, valor)
 
     let despesas = bd.pesquisa(despesa)
 
@@ -254,4 +238,28 @@ function pesquisarDespesas(){
 
 $(document).ready(function(){
     $('#valor').mask('#.###,##0,00')
+    $('#data').mask('00/00/0000')
 });
+
+function consultar(){
+    //texto
+    var historico = document.getElementById('data').value;
+    //lista
+    var data = document.getElementById('opcoesDatas');
+    var adicionar = true;
+    
+    var opt = document.createElement('option');
+
+    for(i=0; i <data.options.length;i++){
+        if(historico==data.options[i].value){
+            adicionar=false;
+        }
+    }
+
+    if(adicionar == true){
+        opt.value =historico;
+        data.appendChild(opt);
+    }
+
+}
+

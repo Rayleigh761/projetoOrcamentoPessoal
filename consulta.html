@@ -75,36 +75,12 @@
         </div>
       </div>
 
-      <div class="row mb-2 d-flex justify-content-center">
-        <div class="col-md-2">
-          <select class="form-control" id="ano">
-            <option value="">Ano</option>
-            <option value="2018">2018</option>
-          </select>
-        </div>
-
-        <div class="col-md-2">
-          <select class="form-control" id="mes">
-            <option value="">Mês</option>
-            <option value="1">Janeiro</option>
-            <option value="2">Fevereiro</option>
-            <option value="3">Março</option>
-            <option value="4">Abril</option>
-            <option value="5">Maio</option>
-            <option value="6">Junho</option>
-            <option value="7">Julho</option>
-            <option value="8">Agosto</option>
-            <option value="9">Setembro</option>
-            <option value="10">Outubro</option>
-            <option value="11">Novembro</option>
-            <option value="12">Dezembro</option>
-          </select>
-        </div>
-        
-        <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Dia" id="dia" />
-        </div>
-
+    <div class="row mb-2 d-flex justify-content-center">
+      <div class="col-md-5 ">
+      <input class="form-control" list="opcoesDatas" id="data" placeholder="Data">
+      <datalist id="opcoesDatas">
+      </datalist>  
+    </div>  
         <div class="col-md-4">
           <select class="form-control" id="tipo">
             <option value="">Tipo</option>
@@ -118,7 +94,7 @@
       </div>
 
       <div class="row  mb-5 d-flex justify-content-center">
-        <div class="col-6">
+        <div class="col-5">
           <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
         </div>
 
